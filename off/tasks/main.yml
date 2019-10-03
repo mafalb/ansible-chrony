@@ -1,0 +1,8 @@
+---
+
+- name: chrony is stopped
+  service:
+    name: chronyd
+    state: stopped
+    enabled: false
+
