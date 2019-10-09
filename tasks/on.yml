@@ -1,0 +1,28 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: assertions
+  assert:
+    that:
+      - ansible_distribution in [ "CentOS" ]
+      - ansible_distribution_version is version("7.0", ">=")
+
+- name: chrony is installed
+  package:
+    name: chrony
+    state: installed
+
+- name: chrony is configured
+  template:
+    src: chrony.conf.j2
+    dest: /etc/chrony.conf
+    backup: true
+     
+- name: chrony is running
+  service:
+    name: chronyd
+    state: started
+    enabled: true
+  notify: reload chronyd
+
+...

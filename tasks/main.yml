@@ -1,11 +1,13 @@
+# vim: set ft=yaml ts=2 expandtab:
 ---
 
-- name: chrony is installed
-  package:
-    name: chrony
-    state: installed
+- name: assertions
+  assert:
+    that:
+      - chrony_status in chrony_stati
 
-- name: chrony is running
-  service:
-    name: chronyd
-    state: started
+- name: include_tasks
+  include_tasks:
+      file: "{{ chrony_status }}.yml"
+
+...

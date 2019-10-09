@@ -1,3 +1,4 @@
+# vim: set ft=yaml ts=2 expandtab:
 ---
 
 - name: chrony is stopped
@@ -6,3 +7,4 @@
     state: stopped
     enabled: false
 
+...
